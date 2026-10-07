@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>English Grammar Portal · Portal Tatabahasa Inggeris</title>
+<title>English Grammar Portal · Portal Tatabahasa Bahasa Inggeris</title>
 <meta name="theme-color" content="#f5f3ff">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1173,7 +1173,7 @@ X(5,`<h4>More modals</h4><table><tr><th>Modal</th><th>Use</th><th>Example</th></
 const LV=[['A1–A2',['Asas','Elementary'],0,15],['B1–B2',['Pertengahan','Intermediate'],16,50],['C1',['Lanjutan','Advanced'],51,64]];
 const app=document.getElementById('app');
 const LS={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
-let L=['bm','en','dual'].includes(LS.g('lang'))?LS.g('lang'):'dual',V='home',VI=0,OL=0,Q=null,U=null,ROLE=null;
+let L=['bm','en','dual'].includes(LS.g('lang'))?LS.g('lang'):'dual',V='home',VI=0,OL=0,Q=null,U=null,ROLE=null,DENY=0;
 const t=(a,b)=>L==='bm'?a:L==='en'?b:a+' · '+b;
 const d=a=>L==='bm'?a[0]:L==='en'?a[1]:`${a[0]}<span class="block text-xs font-medium opacity-70">${a[1]}</span>`;
 const LC=['from-sky-200 to-cyan-200','from-violet-200 to-fuchsia-200','from-rose-200 to-orange-200'];
@@ -1193,15 +1193,15 @@ const PR='text-[15px] leading-relaxed [&_p]:my-2 [&_table]:my-2 [&_table]:block 
 const boom=n=>{try{confetti({particleCount:n,spread:90,startVelocity:45,origin:{y:.65}})}catch(e){}};
 const secs=i=>{const p=h=>h.split('<h4>').map((x,k)=>{if(!k)return x.trim()?{h:'',b:x}:null;const a=x.split('</h4>');return{h:a[0],b:a.slice(1).join('</h4>')}}).filter(Boolean);const e=p(T[i].en),m=p(T[i].bm);return e.map((x,k)=>({en:x,bm:m[k]||x}))};
 
-const acct=()=>!FBL()?'':U?`<a href="#login" class="max-w-[7rem] truncate rounded-full bg-white/80 px-3 py-1.5 text-xs font-bold text-indigo-600 shadow-sm transition-all duration-300 hover:bg-indigo-50 sm:text-sm">👤 ${esc((U.displayName||U.email||'').split('@')[0])}</a>${ROLE==='teacher'?`<a href="#guru" class="rounded-full bg-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm sm:text-sm">${L==='en'?'Teacher':'Guru'}</a>`:''}`:`<a href="#login" class="rounded-full bg-indigo-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-all duration-300 hover:bg-indigo-600 sm:text-sm">${L==='en'?'Log in':'Log masuk'}</a>`;
+const acct=()=>U?`<a href="#login" class="max-w-[7rem] truncate rounded-full bg-white/80 px-3 py-1.5 text-xs font-bold text-indigo-600 shadow-sm transition-all duration-300 hover:bg-indigo-50 sm:text-sm">👤 ${esc((U.displayName||U.email||'').split('@')[0])}</a>${ROLE==='teacher'?`<a href="#guru" class="rounded-full bg-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm sm:text-sm">${L==='en'?'Teacher':'Guru'}</a>`:''}`:`<a href="#login" class="rounded-full bg-indigo-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-all duration-300 hover:bg-indigo-600 sm:text-sm">${L==='en'?'Log in':'Log masuk'}</a>`;
 function nav(){
 const n=document.getElementById('nav');
-n.innerHTML=`<a href="#" class="flex items-center gap-2 font-extrabold tracking-tight"><span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-indigo-400 to-violet-400 font-display text-white shadow">E</span><span class="hidden sm:block">${L==='en'?'English Grammar Portal':'Portal Tatabahasa Inggeris'}</span></a><div class="flex items-center gap-2">${acct()}<div role="group" aria-label="Language" class="flex rounded-full bg-white/80 p-1 text-xs font-bold shadow-sm transition-all duration-300 ease-in-out sm:text-sm">${[['bm','BM'],['dual','BM + BI'],['en','BI']].map(c=>`<button data-l="${c[0]}" class="rounded-full px-3 py-1.5 transition-all duration-300 ease-in-out sm:px-4 ${L===c[0]?'bg-indigo-500 text-white shadow':'text-slate-500 hover:bg-indigo-50'}">${c[1]}</button>`).join('')}</div></div>`;
+n.innerHTML=`<a href="#" class="flex items-center gap-2 font-extrabold tracking-tight"><span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-indigo-400 to-violet-400 font-display text-white shadow">E</span><span class="hidden sm:block">${L==='en'?'English Grammar Portal':'Portal Tatabahasa Bahasa Inggeris'}</span></a><div class="flex items-center gap-2">${acct()}<div role="group" aria-label="Language" class="flex rounded-full bg-white/80 p-1 text-xs font-bold shadow-sm transition-all duration-300 ease-in-out sm:text-sm">${[['bm','BM'],['dual','BM + BI'],['en','BI']].map(c=>`<button data-l="${c[0]}" class="rounded-full px-3 py-1.5 transition-all duration-300 ease-in-out sm:px-4 ${L===c[0]?'bg-indigo-500 text-white shadow':'text-slate-500 hover:bg-indigo-50'}">${c[1]}</button>`).join('')}</div></div>`;
 n.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{L=b.dataset.l;LS.s('lang',L);render()})}
 
 function home(){
 const n=T.length,ps=cnt(),pc=Math.round(ps/n*100);
-app.innerHTML=`<section class="animate-pop rounded-3xl bg-gradient-to-br from-indigo-100 via-violet-100 to-pink-100 p-6 text-slate-800 shadow-xl shadow-violet-200/50 sm:p-10"><p class="text-sm font-semibold text-indigo-500">${L==='en'?'Standard British English (Cambridge) · Pass mark 80% (12/15)':'Standard British English (Cambridge) · Markah lulus 80% (12/15)'}</p><h1 class="mt-2 font-display text-4xl font-extrabold leading-tight sm:text-6xl">${L==='en'?'Master English grammar, step by step':'Kuasai tatabahasa Inggeris, langkah demi langkah'}${L==='dual'?'<span class="mt-2 block font-body text-xl font-semibold text-slate-500 sm:text-2xl">Master English grammar, step by step</span>':''}</h1><div class="mt-6"><div class="mb-2 flex justify-between text-sm font-semibold"><span>${t('Kemajuan keseluruhan','Overall progress')}</span><span>${ps}/${n} · ${pc}%</span></div><div class="h-3 overflow-hidden rounded-full bg-white/70"><div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-violet-400 transition-all duration-700 ease-out" style="width:${pc}%"></div></div></div></section>
+app.innerHTML=`<section class="animate-pop rounded-3xl bg-gradient-to-br from-indigo-100 via-violet-100 to-pink-100 p-6 text-slate-800 shadow-xl shadow-violet-200/50 sm:p-10"><p class="text-sm font-semibold text-indigo-500">${L==='en'?'Standard British English (Cambridge) · Pass mark 80% (12/15)':'Standard British English (Cambridge) · Markah lulus 80% (12/15)'}</p><h1 class="mt-2 font-display text-4xl font-extrabold leading-tight sm:text-6xl">${L==='en'?'Master English Grammar, Step By Step':'Kuasai Tatabahasa Bahasa Inggeris, Langkah Demi Langkah'}${L==='dual'?'<span class="mt-2 block font-body text-xl font-semibold text-slate-500 sm:text-2xl">Master English grammar, step by step</span>':''}</h1><div class="mt-6"><div class="mb-2 flex justify-between text-sm font-semibold"><span>${t('Kemajuan keseluruhan','Overall progress')}</span><span>${ps}/${n} · ${pc}%</span></div><div class="h-3 overflow-hidden rounded-full bg-white/70"><div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-violet-400 transition-all duration-700 ease-out" style="width:${pc}%"></div></div></div></section>
 <section class="mt-6"><h2 class="mb-3 font-bold">${t('Lencana','Badges')}</h2><div class="grid grid-cols-3 gap-3 sm:grid-cols-6">${BD.map(b=>{const on=b[2]();return `<div class="rounded-2xl border p-3 text-center transition-all duration-300 ease-in-out ${on?'border-amber-200 bg-amber-50 shadow-sm':'border-slate-100 bg-white/60 opacity-60 grayscale'}"><div class="text-3xl">${b[0]}</div><div class="mt-1 text-xs font-semibold">${d(b[1])}</div></div>`}).join('')}</div></section>`+
 LV.map((l,k)=>{let m=l[3]-l[2]+1,p=0,h='';for(let i=l[2];i<=l[3];i++){const b=best(i);if(ok(i))p++;h+=`<a href="#t${i}" class="block rounded-2xl border border-violet-100 bg-white p-4 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-indigo-400 hover:shadow-xl"><div class="flex items-start justify-between gap-2"><h3 class="font-bold leading-snug">${nm(i,0)}</h3><span class="shrink-0 rounded-full px-2 py-1 text-xs font-bold ${b===null?'bg-slate-100 text-slate-500':ok(i)?'bg-emerald-100 text-emerald-700':'bg-rose-100 text-rose-700'}">${b===null?t('Baharu','New'):ok(i)?'✔ '+b+'/15':b+'/15'}</span></div><p class="mt-1 text-sm text-slate-500">${nm(i,1)}</p><div class="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full ${ok(i)?'bg-emerald-500':'bg-rose-400'}" style="width:${b===null?0:Math.round(b/15*100)}%"></div></div></a>`}
 return `<details class="group mt-6 overflow-hidden rounded-3xl border border-white bg-white/60 shadow-sm shadow-violet-100" data-k="${k}"${k===OL?' open':''}><summary class="flex cursor-pointer list-none items-center gap-4 p-5 [&::-webkit-details-marker]:hidden"><span class="grid h-12 w-14 place-items-center rounded-2xl bg-gradient-to-br ${LC[k]} font-display font-extrabold text-slate-700">${l[0]}</span><div class="flex-1"><div class="font-bold">${d(l[1])}</div><div class="mt-2 h-2 overflow-hidden rounded-full bg-indigo-100"><div class="h-full rounded-full bg-emerald-500 transition-all duration-700 ease-out" style="width:${Math.round(p/m*100)}%"></div></div></div><span class="text-sm font-semibold text-slate-500">${p}/${m}</span><span class="text-xs font-semibold text-indigo-500 group-open:hidden">${t('Ketik untuk buka','Tap to open')}</span><span class="transition-transform duration-300 group-open:rotate-180">⌄</span></summary><div class="grid gap-4 p-5 pt-0 sm:grid-cols-2 lg:grid-cols-3">${h}</div></details>`}).join('');
@@ -1228,7 +1228,7 @@ app.innerHTML=`<a href="#t${Q.i}" class="${BK}">← ${t('Kembali ke pelajaran','
 <div class="mt-6 flex flex-wrap items-center justify-between gap-3"><button data-a="prev" ${Q.n?'':'disabled'} class="${BTN2} disabled:cursor-not-allowed disabled:opacity-40">← ${t('Sebelum','Previous')}</button>${last?`<button data-a="submit" class="${BTN} ${dn<n?'opacity-60':''}">${t('Hantar kuiz','Submit quiz')} ✓</button>`:`<button data-a="next" class="${BTN}">${t('Seterusnya','Next')} →</button>`}</div>${last&&dn<n?`<p class="mt-3 text-sm font-semibold text-rose-600">${t('Jawab semua soalan dahulu','Answer every question first')} (${n-dn} ${t('belum dijawab','unanswered')}).</p>`:''}</div>`}
 function pick(k){Q.ans[Q.n]=k;quiz()}
 function act(x){
-if(x==='login'||x==='register')return doAuth(x);
+if(x==='login')return doAuth(x);
 if(x==='logout'){FB.logout();return}
 if(x==='retry'){startQuiz(Q.i);render();scrollTo(0,0);return}
 if(x==='next'&&Q.n<Q.qs.length-1)Q.n++;
@@ -1238,19 +1238,20 @@ quiz();scrollTo(0,0)}
 function finish(){Q.done=1;Q.s=Q.qs.reduce((s,q,k)=>s+(Q.ans[k]===q[2]?1:0),0);const b=best(Q.i);if(b===null||Q.s>b)LS.s(key(Q.i),Q.s);if(FBL()&&U)FB.saveScore(Q.i,Q.s,Math.max(b||0,Q.s));if(Q.s===15){boom(160);setTimeout(()=>boom(120),400);setTimeout(()=>boom(120),800)}else if(Q.s>=12)boom(120);render();scrollTo(0,0)}
 function result(){
 const s=Q.s,n=Q.qs.length,p=s>=12,C=2*Math.PI*52,lb=s>=14?'DISTINCTION':p?'PASS':(L==='en'?'NOT YET PASSED':'BELUM LULUS · NOT YET PASSED');
-app.innerHTML=`<div class="animate-pop rounded-3xl bg-gradient-to-br ${p?'from-emerald-200 to-sky-200':'from-rose-200 to-violet-200'} p-8 text-center text-slate-800 shadow-xl"><svg viewBox="0 0 120 120" class="mx-auto h-36 w-36 -rotate-90"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="#4f46e5" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*s/n} ${C}" class="transition-all duration-1000"/></svg><div class="-mt-24 mb-14 text-4xl font-extrabold">${s}/${n}</div><p class="text-2xl font-extrabold">${lb}</p><p class="mt-1 text-slate-600">${Math.round(s/n*100)}% · ${p?t('Tahniah! Anda lulus topik ini.','Congratulations! You passed this topic.'):t('Markah lulus: 12/15. Baca semula pelajaran sebelum cuba lagi.','Pass mark: 12/15. Read the lesson again before you retry.')}</p>${FBL()?`<p class="mt-3 text-xs font-semibold text-slate-500">${U?t('✔ Markah disimpan ke akaun anda.','✔ Score saved to your account.'):t('Log masuk untuk menyimpan markah dalam awan.','Log in to save your score online.')}</p>`:''}<div class="mt-6 flex flex-wrap justify-center gap-3"><button data-a="retry" class="rounded-2xl bg-white px-6 py-3 font-bold text-indigo-700 shadow transition-all duration-300 hover:-translate-y-0.5 active:scale-95">${t('Cuba lagi','Retry')}</button><a href="#t${Q.i}" class="rounded-2xl border-2 border-indigo-400 px-6 py-3 font-bold text-indigo-700 transition-all duration-300 hover:bg-white/60 active:scale-95">${t('Belajar semula','Review lesson')}</a><a href="#" class="rounded-2xl border-2 border-indigo-400 px-6 py-3 font-bold text-indigo-700 transition-all duration-300 hover:bg-white/60 active:scale-95">${t('Utama','Home')}</a></div></div>
+app.innerHTML=`<div class="animate-pop rounded-3xl bg-gradient-to-br ${p?'from-emerald-200 to-sky-200':'from-rose-200 to-violet-200'} p-8 text-center text-slate-800 shadow-xl"><svg viewBox="0 0 120 120" class="mx-auto h-36 w-36 -rotate-90"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="#4f46e5" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*s/n} ${C}" class="transition-all duration-1000"/></svg><div class="-mt-24 mb-14 text-4xl font-extrabold">${s}/${n}</div><p class="text-2xl font-extrabold">${lb}</p><p class="mt-1 text-slate-600">${Math.round(s/n*100)}% · ${p?t('Tahniah! Anda lulus topik ini.','Congratulations! You passed this topic.'):t('Markah lulus: 12/15. Baca semula pelajaran sebelum cuba lagi.','Pass mark: 12/15. Read the lesson again before you retry.')}</p>${FBL()&&U?`<p class="mt-3 text-xs font-semibold text-slate-500">${t('✔ Markah disimpan ke akaun anda.','✔ Score saved to your account.')}</p>`:''}<div class="mt-6 flex flex-wrap justify-center gap-3"><button data-a="retry" class="rounded-2xl bg-white px-6 py-3 font-bold text-indigo-700 shadow transition-all duration-300 hover:-translate-y-0.5 active:scale-95">${t('Cuba lagi','Retry')}</button><a href="#t${Q.i}" class="rounded-2xl border-2 border-indigo-400 px-6 py-3 font-bold text-indigo-700 transition-all duration-300 hover:bg-white/60 active:scale-95">${t('Belajar semula','Review lesson')}</a><a href="#" class="rounded-2xl border-2 border-indigo-400 px-6 py-3 font-bold text-indigo-700 transition-all duration-300 hover:bg-white/60 active:scale-95">${t('Utama','Home')}</a></div></div>
 <h2 class="mb-3 mt-8 font-display text-2xl font-bold">${t('Jawapan dan semakan','Answers and review')}</h2><div class="grid gap-3">${Q.qs.map((q,k)=>{const a=Q.ans[k],c=a===q[2];return `<div class="rounded-2xl border-l-8 bg-white p-4 shadow-sm ${c?'border-emerald-500':'border-rose-500'}"><p class="font-bold">${k+1}. ${q[0]}</p>${c?`<p class="mt-2 text-sm font-semibold text-emerald-600">✔ ${'abcd'[q[2]]}) ${q[1][q[2]]}</p>`:`<p class="mt-2 text-sm font-semibold text-rose-600">✘ ${t('Jawapan anda','Your answer')}: ${'abcd'[a]}) ${q[1][a]}</p><p class="text-sm font-semibold text-emerald-600">✔ ${t('Jawapan betul','Correct answer')}: ${'abcd'[q[2]]}) ${q[1][q[2]]}</p>`}</div>`}).join('')}</div>`}
 
 const INP='mt-1 w-full rounded-xl border-2 border-violet-100 bg-white px-3 py-2 font-medium outline-none transition-all duration-300 focus:border-indigo-400';
 const ERR=c=>({'auth/invalid-credential':t('E-mel atau kata laluan salah.','Wrong e-mail or password.'),'auth/email-already-in-use':t('E-mel ini sudah didaftarkan.','This e-mail is already registered.'),'auth/weak-password':t('Kata laluan terlalu pendek (minimum 6 aksara).','Password too short (minimum 6 characters).'),'auth/invalid-email':t('Format e-mel tidak sah.','Invalid e-mail format.'),'auth/missing-password':t('Sila isi kata laluan.','Please enter a password.'),'auth/too-many-requests':t('Terlalu banyak percubaan. Cuba sebentar lagi.','Too many attempts. Try again later.')}[c]||t('Ralat. Cuba lagi.','Error. Please try again.')+' ('+c+')');
 async function doAuth(x){
 const g=id=>document.getElementById(id),er=g('er');er.textContent='…';
-try{await(x==='login'?FB.login(g('em').value.trim(),g('pw').value):FB.register(g('em').value.trim(),g('pw').value,g('nmx').value.trim()));go('#')}catch(e){er.textContent=ERR(e.code)}}
+DENY=0;try{await FB.login(g('em').value.trim(),g('pw').value);go('#')}catch(e){er.textContent=ERR(e.code)}}
+const fbmsg=()=>location.protocol==='file:'?t('Anda membuka fail ini terus daripada komputer (file://). Firebase tidak berfungsi dengan cara ini. Buka melalui Live Server di VS Code (klik kanan index.html → Open with Live Server) atau deploy ke Netlify.','You opened this file straight from your computer (file://). Firebase does not work this way. Open it with Live Server in VS Code (right-click index.html → Open with Live Server) or deploy it to Netlify.'):window.FB&&window.FB.err?t('Ralat Firebase: ','Firebase error: ')+esc(window.FB.err):window.FB?t('Firebase belum disambung. Isi firebaseConfig dalam fail ini untuk mengaktifkan log masuk dan simpanan markah dalam awan.','Firebase is not connected yet. Fill in firebaseConfig in this file to enable login and cloud score saving.'):t('Firebase tidak dapat dimuatkan. Semak sambungan internet (atau penyekat iklan), kemudian buka Console pelayar (F12) untuk melihat ralat.','Firebase could not be loaded. Check your internet connection (or ad blocker), then open the browser Console (F12) to see the error.');
 function login(){
 const back=`<a href="#" class="${BK}">← ${t('Utama','Home')}</a>`;
-if(!FBL()){app.innerHTML=back+`<div class="mt-4 max-w-xl rounded-3xl border border-white bg-white/80 p-6 shadow-lg"><h1 class="font-display text-2xl font-bold">Firebase</h1><p class="mt-2 text-slate-600">${t('Firebase belum disambung. Isi firebaseConfig dalam fail ini untuk mengaktifkan log masuk dan simpanan markah dalam awan.','Firebase is not connected yet. Fill in firebaseConfig in this file to enable login and cloud score saving.')}</p></div>`;return}
+if(!FBL()){app.innerHTML=back+`<div class="mt-4 max-w-xl rounded-3xl border border-white bg-white/80 p-6 shadow-lg"><h1 class="font-display text-2xl font-bold">Firebase</h1><p class="mt-2 text-slate-600">${fbmsg()}</p></div>`;return}
 if(U){app.innerHTML=back+`<div class="mt-4 max-w-md rounded-3xl border border-white bg-white/80 p-6 shadow-lg"><h1 class="font-display text-2xl font-bold">👤 ${esc(U.displayName||U.email)}</h1><p class="text-sm text-slate-500">${esc(U.email)}${ROLE==='teacher'?' · '+(L==='en'?'Teacher':'Guru'):''}</p><p class="mt-3 text-sm font-semibold">${cnt()}/${T.length} ${t('topik lulus','topics passed')}</p><button data-a="logout" class="${BTN2} mt-5">${t('Log keluar','Log out')}</button></div>`;return}
-app.innerHTML=back+`<div class="mx-auto mt-4 max-w-md rounded-3xl border border-white bg-white/80 p-6 shadow-lg"><h1 class="font-display text-3xl font-bold">${t('Log masuk','Log in')}</h1><p class="mt-1 text-sm text-slate-500">${t('Simpan markah dalam awan dan jejak kemajuan di mana-mana peranti.','Save your scores online and track progress on any device.')}</p><label class="mt-4 block text-sm font-semibold">${t('Nama (untuk daftar)','Name (for sign-up)')}<input id="nmx" autocomplete="name" class="${INP}"></label><label class="mt-3 block text-sm font-semibold">${t('E-mel','E-mail')}<input id="em" type="email" autocomplete="email" class="${INP}"></label><label class="mt-3 block text-sm font-semibold">${t('Kata laluan','Password')}<input id="pw" type="password" autocomplete="current-password" class="${INP}"></label><p id="er" class="mt-3 min-h-[1.25rem] text-sm font-semibold text-rose-600"></p><div class="mt-3 flex flex-wrap gap-3"><button data-a="login" class="${BTN}">${t('Log masuk','Log in')}</button><button data-a="register" class="${BTN2}">${t('Daftar','Register')}</button></div><p class="mt-4 text-xs text-slate-500">${t('Anda juga boleh belajar tanpa akaun; markah disimpan dalam pelayar ini sahaja.','You can also learn without an account; scores stay in this browser only.')}</p></div>`}
+app.innerHTML=back+`<div class="mx-auto mt-4 max-w-md rounded-3xl border border-white bg-white/80 p-6 shadow-lg"><h1 class="font-display text-3xl font-bold">${t('Log masuk','Log in')}</h1><p class="mt-1 text-sm text-slate-500">${t('Untuk akaun yang didaftarkan oleh pentadbir sistem sahaja. Markah disimpan dalam awan dan boleh dilihat di mana-mana peranti.','For accounts registered by system admin only. Scores are saved online and available on any device.')}</p><label class="mt-4 block text-sm font-semibold">${t('E-mel','E-mail')}<input id="em" type="email" autocomplete="email" class="${INP}"></label><label class="mt-3 block text-sm font-semibold">${t('Kata laluan','Password')}<input id="pw" type="password" autocomplete="current-password" class="${INP}"></label><p id="er" class="mt-3 min-h-[1.25rem] text-sm font-semibold text-rose-600">${DENY?t('Akaun ini belum didaftarkan oleh guru. Sila hubungi guru anda.','This account has not been registered by your teacher. Please contact your teacher.'):''}</p><div class="mt-3 flex flex-wrap gap-3"><button data-a="login" class="${BTN}">${t('Log masuk','Log in')}</button></div><p class="mt-4 text-xs text-slate-500">${t('Anda juga boleh belajar tanpa akaun; markah disimpan dalam pelayar ini sahaja.','You can also learn without an account; scores stay in this browser only.')}</p></div>`}
 async function guru(){
 const back=`<a href="#" class="${BK}">← ${t('Utama','Home')}</a>`;
 if(!(FBL()&&U&&ROLE==='teacher')){app.innerHTML=back+`<p class="mt-4 rounded-2xl bg-rose-100 p-4 font-semibold text-rose-800">${t('Halaman ini untuk guru sahaja. Log masuk dengan akaun guru.','This page is for teachers only. Log in with a teacher account.')}</p>`;return}
@@ -1274,51 +1275,58 @@ function go(h){try{history.pushState(null,'',h)}catch(x){try{location.hash=h}cat
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();go(a.getAttribute('href'))});
 addEventListener('hashchange',()=>route());addEventListener('popstate',()=>route());
 addEventListener('fb-ready',()=>render());
-addEventListener('fb-auth',e=>{U=e.detail.user;ROLE=e.detail.role;const r=e.detail.scores||{};if(U)for(const k in r){const b=best(+k);if(b===null||r[k]>b)LS.s(key(+k),r[k])}render()});
+addEventListener('fb-auth',e=>{U=e.detail.user;ROLE=e.detail.role;if(e.detail.denied){DENY=1;if(V!=='login'){go('#login');return}}const r=e.detail.scores||{};if(U)for(const k in r){const b=best(+k);if(b===null||r[k]>b)LS.s(key(+k),r[k])}render()});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.target.id==='pw'||e.target.id==='em'))act('login')});
 addEventListener('error',e=>{const b=document.createElement('div');b.className='m-4 rounded-2xl bg-rose-100 p-4 text-sm font-semibold text-rose-800';b.textContent='Ralat / Error: '+e.message;document.body.prepend(b)});
 route();
 </script>
 <script type="module">
-/* ===== FIREBASE (Auth + Firestore) =====
+/* ===== FIREBASE (Auth + Firestore) — accounts are created ONLY by the owner =====
+   Setup:
    1) Firebase console > Project settings > Your apps > Web app: copy the config into firebaseConfig below.
    2) Authentication > Sign-in method: enable Email/Password. Authentication > Settings > Authorised domains: add your Netlify domain.
-   3) Firestore Database: create, then paste the rules from the file firestore.rules (Rules tab > Publish).
-   4) Make a teacher: Firestore > users > (their uid) > add field  role = "teacher"  (string). Students cannot set this field.
-   Until step 1 is done (apiKey starts with "ISI"), the portal works normally using this browser's storage only. */
+   3) Firestore Database: create it, then paste the rules from firestore.rules (Rules tab > Publish).
+   4) To add a student or teacher (there is NO public sign-up):
+      a) Authentication > Users > Add user (e-mail + password). Copy the User UID.
+      b) Firestore > users > Add document. Document ID = that UID. Fields: name (string), email (string), scores (map, empty).
+         For a teacher, also add: role (string) = teacher.
+   An account without a users/{uid} document is signed out automatically and cannot read or write any data.
+   Visitors without an account use the portal normally; their quiz scores stay in their own browser (localStorage).
+   Until step 1 is done (apiKey starts with "ISI"), the portal runs in local mode only. */
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,updateProfile} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {getFirestore,doc,getDoc,setDoc,addDoc,collection,getDocs,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const firebaseConfig = {
-    apiKey: "AIzaSyADh-X34WZOrc3DXcaJ9aX4ZcVeuvSVBl4",
-    authDomain: "portal-belajar-inggeris-27046.firebaseapp.com",
-    projectId: "portal-belajar-inggeris-27046",
-    storageBucket: "portal-belajar-inggeris-27046.firebasestorage.app",
-    messagingSenderId: "596881937724",
-    appId: "1:596881937724:web:20fa706101e6d5a7523a39"
-  };
+  apiKey: "AIzaSyADh-X34WZOrc3DXcaJ9aX4ZcVeuvSVBl4",
+  authDomain: "portal-belajar-inggeris-27046.firebaseapp.com",
+  projectId: "portal-belajar-inggeris-27046",
+  storageBucket: "portal-belajar-inggeris-27046.firebasestorage.app",
+  messagingSenderId: "596881937724",
+  appId: "1:596881937724:web:20fa706101e6d5a7523a39"
+};
 const ev=(n,d)=>window.dispatchEvent(new CustomEvent(n,{detail:d}));
 if(firebaseConfig.apiKey.startsWith("ISI")){window.FB={live:false};ev("fb-ready")}
-else{
+else{try{
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
-const pre=e=>(e||"").split("@")[0];
 window.FB={live:true,
  login:(e,p)=>signInWithEmailAndPassword(auth,e,p),
- register:async(e,p,n)=>{const c=await createUserWithEmailAndPassword(auth,e,p);const name=n||pre(e);
-  try{await updateProfile(c.user,{displayName:name});await setDoc(doc(db,"users",c.user.uid),{name:name,email:e,scores:{},updatedAt:serverTimestamp()},{merge:true})}catch(x){console.warn("register profile",x)}
-  return c},
  logout:()=>signOut(auth),
  saveScore:async(i,s,b)=>{const u=auth.currentUser;if(!u)return;
-  try{await setDoc(doc(db,"users",u.uid),{name:u.displayName||pre(u.email),email:u.email,scores:{[i]:b},updatedAt:serverTimestamp()},{merge:true});
+  try{await setDoc(doc(db,"users",u.uid),{scores:{[i]:b},updatedAt:serverTimestamp()},{merge:true});
       await addDoc(collection(db,"users",u.uid,"attempts"),{topic:i,score:s,total:15,at:serverTimestamp()})}
   catch(x){console.warn("saveScore",x)}},
  teacherList:async()=>(await getDocs(collection(db,"users"))).docs.map(d=>({uid:d.id,...d.data()}))};
 ev("fb-ready");
 onAuthStateChanged(auth,async u=>{
  if(!u){ev("fb-auth",{user:null,role:null,scores:{}});return}
- let d={};try{const s=await getDoc(doc(db,"users",u.uid));if(s.exists())d=s.data()}catch(x){console.warn("load profile",x)}
+ let d={};
+ try{const s=await getDoc(doc(db,"users",u.uid));
+  if(s.exists())d=s.data();
+  else{await signOut(auth);ev("fb-auth",{user:null,role:null,scores:{},denied:true});return}}
+ catch(x){console.warn("load profile",x)}
  ev("fb-auth",{user:u,role:d.role||null,scores:d.scores||{}});
 });
+}catch(x){console.error("Firebase init failed",x);window.FB={live:false,err:(x&&(x.code||x.message))||String(x)};ev("fb-ready")}
 }
 </script>
 </body></html>
