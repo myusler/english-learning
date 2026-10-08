@@ -1333,5 +1333,17 @@ onAuthStateChanged(auth,async u=>{
 });
 }catch(x){console.error("Firebase init failed",x);window.FB={live:false,err:(x&&(x.code||x.message))||String(x)};ev("fb-ready")}
 }
+// Semak jika pelayar web menyokong Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker berjaya didaftarkan:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Pendaftaran Service Worker gagal:', error);
+        });
+    });
+  }
 </script>
 </body></html>
