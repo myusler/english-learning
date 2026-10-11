@@ -1,30 +1,25 @@
-// Nama storan cache aplikasi anda
-const CACHE_NAME = 'pwa-cache-v1';
+const CACHE = 'eg-portal-v2';
 
-// Senarai fail asas yang mahu disimpan untuk kegunaan offline (jika ada)
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
-];
+self.addEventListener('install', () => self.skipWaiting());
 
-// 1. Fasa Kemasukan (Install) - Menyimpan fail asas ke dalam cache
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys()
+      .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// 2. Fasa Pengambilan (Fetch) - Membolehkan app dibuka dengan laju
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Jika ada dalam cache, guna cache. Jika tiada, ambil dari internet.
-        return response || fetch(event.request);
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  if (new URL(e.request.url).origin !== location.origin) return;
+  e.respondWith(
+    fetch(e.request)
+      .then(r => {
+        const copy = r.clone();
+        caches.open(CACHE).then(c => c.put(e.request, copy));
+        return r;
       })
+      .catch(() => caches.match(e.request).then(m => m || caches.match('/index.html')))
   );
 });
