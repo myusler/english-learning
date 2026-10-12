@@ -1293,14 +1293,19 @@ const j=e.target.closest('[data-j]');if(j&&V==='quiz'&&!Q.done){Q.n=+j.dataset.j
 const o=e.target.closest('[data-k]');if(o&&V==='quiz'&&!Q.done){pick(+o.dataset.k);return}
 const a=e.target.closest('[data-a]');if(a)act(a.dataset.a)});
 app.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-flip]')){e.preventDefault();const d=e.target.firstElementChild;d.dataset.f=d.dataset.f==='1'?'0':'1'}});
-function go(h){try{history.pushState(null,'',h)}catch(x){try{location.hash=h}catch(y){}}route(h)}
+const isHome=h=>!h||h==='#';let deep=0;
+function go(h){
+if(isHome(h)){if(deep){deep=0;history.back();return}try{history.replaceState(null,'','#')}catch(x){}route('#');return}
+try{if(deep)history.replaceState(null,'',h);else{history.pushState(null,'',h);deep=1}}catch(x){try{location.hash=h}catch(y){}}
+route(h)}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();if(a.dataset.rs){FR=1;RY=scrollY}go(a.getAttribute('href'))});
-addEventListener('hashchange',()=>route());addEventListener('popstate',()=>route());
+addEventListener('hashchange',()=>route());addEventListener('popstate',()=>{if(isHome(location.hash))deep=0;route()});
 addEventListener('fb-ready',()=>render());
 addEventListener('fb-auth',e=>{U=e.detail.user;ROLE=e.detail.role;if(e.detail.denied){DENY=1;if(V!=='login'){go('#login');return}}const r=e.detail.scores||{};if(U)for(const k in r){const b=best(+k);if(b===null||r[k]>b)LS.s(key(+k),r[k])}
 if(U&&e.detail.assess!=null){const b=best('A');if(b===null||e.detail.assess>b)LS.s(key('A'),e.detail.assess)}render()});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.target.id==='pw'||e.target.id==='em'))act('login')});
 addEventListener('error',e=>{const b=document.createElement('div');b.className='m-4 rounded-2xl bg-rose-100 p-4 text-sm font-semibold text-rose-800';b.textContent='Ralat / Error: '+e.message;document.body.prepend(b)});
+if(!isHome(location.hash)){try{const h=location.hash;history.replaceState(null,'','#');history.pushState(null,'',h);deep=1}catch(x){}}
 route();
 </script>
 <script type="module">
